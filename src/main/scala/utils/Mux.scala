@@ -1,4 +1,4 @@
-package util
+package utils
 
 import chisel3._
 import chisel3.util._
@@ -111,41 +111,15 @@ class Mux32(val width : Int) extends Module {
     })
 
     val mux0 = Module(new Mux16(width))
-    mux0.io.in(0x0) := io.in(0x00)
-    mux0.io.in(0x1) := io.in(0x01)
-    mux0.io.in(0x2) := io.in(0x02)
-    mux0.io.in(0x3) := io.in(0x03)
-    mux0.io.in(0x4) := io.in(0x04)
-    mux0.io.in(0x5) := io.in(0x05)
-    mux0.io.in(0x6) := io.in(0x06)
-    mux0.io.in(0x7) := io.in(0x07)
-    mux0.io.in(0x8) := io.in(0x08)
-    mux0.io.in(0x9) := io.in(0x09)
-    mux0.io.in(0xa) := io.in(0x0a)
-    mux0.io.in(0xb) := io.in(0x0b)
-    mux0.io.in(0xc) := io.in(0x0c)
-    mux0.io.in(0xd) := io.in(0x0d)
-    mux0.io.in(0xe) := io.in(0x0e)
-    mux0.io.in(0xf) := io.in(0x0f)
+    for (i <- 0 to 0xf) {
+        mux0.io.in(i) := io.in(i)
+    }
     mux0.io.sel := io.sel(3,0)
 
     val mux1 = Module(new Mux16(width))
-    mux1.io.in(0x0) := io.in(0x10)
-    mux1.io.in(0x1) := io.in(0x11)
-    mux1.io.in(0x2) := io.in(0x12)
-    mux1.io.in(0x3) := io.in(0x13)
-    mux1.io.in(0x4) := io.in(0x14)
-    mux1.io.in(0x5) := io.in(0x15)
-    mux1.io.in(0x6) := io.in(0x16)
-    mux1.io.in(0x7) := io.in(0x17)
-    mux1.io.in(0x8) := io.in(0x18)
-    mux1.io.in(0x9) := io.in(0x19)
-    mux1.io.in(0xa) := io.in(0x1a)
-    mux1.io.in(0xb) := io.in(0x1b)
-    mux1.io.in(0xc) := io.in(0x1c)
-    mux1.io.in(0xd) := io.in(0x1d)
-    mux1.io.in(0xe) := io.in(0x1e)
-    mux1.io.in(0xf) := io.in(0x1f)
+    for (i <- 0 to 0xf) {
+        mux1.io.in(i) := io.in(i + 0x10)
+    }
     mux1.io.sel := io.sel(3,0)
 
     val mux2 = Module(new Mux2(width))
